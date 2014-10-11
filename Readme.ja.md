@@ -15,7 +15,7 @@ JavaScriptで栞を組みたくなった場合にお使いください。
 
 ### 使用例
 
-JavaScriptによるSHIORIの実装である[Miyo](https://github.com/Narazaka/miyoshiori.git)にShiolinkJSが使われています。
+JavaScriptによるSHIORIの実装である[MiyoJS](https://github.com/Narazaka/miyojs.git)にShiolinkJSが使われています。
 
 どんなかんじか
 --------------------------

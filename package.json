@@ -1,6 +1,6 @@
 {
 	"name": "shiolinkjs",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "SHIOLINK interface for JavaScript",
 	"homepage": "http://narazaka.github.io/shiolinkjs/",
 	"main": "index.js",

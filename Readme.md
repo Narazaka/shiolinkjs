@@ -13,7 +13,7 @@ ShioriJK is a library for using SHIOLINK.dll for making SHIORI subsystem.
 
 ### Usage
 
-See the SHIORI implementation [Miyo](https://github.com/Narazaka/miyoshiori.git).
+See the SHIORI implementation [MiyoJS](https://github.com/Narazaka/miyojs.git).
 
 Overview
 --------------------------
