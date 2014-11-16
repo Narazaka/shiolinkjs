@@ -51,7 +51,7 @@ This parses SHIOLINK protocol and passes data to basic &quot;SHIORI engine&quot;
           </span>
         </dt>
         <dd class='desc'>
-          engine
+          engine 
         </dd>
         <dt id='request_parser-property'>
           <span class='signature'>
@@ -62,7 +62,7 @@ This parses SHIOLINK protocol and passes data to basic &quot;SHIORI engine&quot;
           </span>
         </dt>
         <dd class='desc'>
-          parser
+          parser 
         </dd>
       </dl>
       <h2>Instance Method Summary</h2>
@@ -71,7 +71,7 @@ This parses SHIOLINK protocol and passes data to basic &quot;SHIORI engine&quot;
     <span class='signature'>
       <a href='#add_chunk-dynamic'>
         #
-(String)
+(Promise)
 <b>add_chunk</b><span>(chunk)</span>
       </a>
     </span>
@@ -83,7 +83,7 @@ This parses SHIOLINK protocol and passes data to basic &quot;SHIORI engine&quot;
     <span class='signature'>
       <a href='#add_lines-dynamic'>
         #
-(String)
+(Promise)
 <b>add_lines</b><span>(lines)</span>
       </a>
     </span>
@@ -95,7 +95,7 @@ This parses SHIOLINK protocol and passes data to basic &quot;SHIORI engine&quot;
     <span class='signature'>
       <a href='#add_line-dynamic'>
         #
-(String)
+(Promise)
 <b>add_line</b><span>(line)</span>
       </a>
     </span>
@@ -142,7 +142,7 @@ This parses SHIOLINK protocol and passes data to basic &quot;SHIORI engine&quot;
   <div class='method_details'>
     <p class='signature' id='add_chunk-dynamic'>
       #
-(String)
+(Promise)
 <b>add_chunk</b><span>(chunk)</span>
       <br>
     </p>
@@ -168,7 +168,7 @@ This parses SHIOLINK protocol and passes data to basic &quot;SHIORI engine&quot;
     <li>
       <span class='type'></span>
       (
-        <tt>String</tt>
+        <tt>Promise</tt>
       )
       &mdash;
       <span class='desc'>add_lines()&#39;s result </span>
@@ -179,7 +179,7 @@ This parses SHIOLINK protocol and passes data to basic &quot;SHIORI engine&quot;
   <div class='method_details'>
     <p class='signature' id='add_lines-dynamic'>
       #
-(String)
+(Promise)
 <b>add_lines</b><span>(lines)</span>
       <br>
     </p>
@@ -205,7 +205,7 @@ This parses SHIOLINK protocol and passes data to basic &quot;SHIORI engine&quot;
     <li>
       <span class='type'></span>
       (
-        <tt>String</tt>
+        <tt>Promise</tt>
       )
       &mdash;
       <span class='desc'>add_line()&#39;s result </span>
@@ -216,7 +216,7 @@ This parses SHIOLINK protocol and passes data to basic &quot;SHIORI engine&quot;
   <div class='method_details'>
     <p class='signature' id='add_line-dynamic'>
       #
-(String)
+(Promise)
 <b>add_line</b><span>(line)</span>
       <br>
     </p>
@@ -242,10 +242,10 @@ This parses SHIOLINK protocol and passes data to basic &quot;SHIORI engine&quot;
     <li>
       <span class='type'></span>
       (
-        <tt>String</tt>
+        <tt>Promise</tt>
       )
       &mdash;
-      <span class='desc'>if request transaction is completed, response transaction string, and if not, none. </span>
+      <span class='desc'>If request transaction is completed, Promise resolved value is response transaction string, and if not, none (undefined value). If Engine throws error, Promise resolved value will be 500 Internal Server Error string. </span>
     </li>
   </ul>
 </div>
@@ -253,11 +253,11 @@ This parses SHIOLINK protocol and passes data to basic &quot;SHIORI engine&quot;
 </div>
     </div>
     <div id='footer'>
-  October 12, 14 16:10:44 by
+  November 16, 14 18:16:12 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
-  2.0.8
+  2.0.9
   &#10034;
   Press H to see the keyboard shortcuts
   &#10034;
