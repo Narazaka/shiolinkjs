@@ -48,7 +48,7 @@ class ShiolinkJS
 		@add_lines lines
 	# append SHIOLINK protocol chunk lines
 	# @param lines [Array<String>] SHIOLINK protocol chunk lines separated by \r\n
-	# @return [Promise] add_line()'s result
+	# @return [Promise] Promise of string result that is combination of add_line()'s result. It may be empty string, not undefined / null.
 	add_lines : (lines) ->
 		promise = new Promise (resolve, reject) -> resolve []
 		for line in lines
