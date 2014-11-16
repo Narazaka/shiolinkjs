@@ -25,7 +25,7 @@ load, request, unloadを実装したエンジンを渡してインスタンス�
 ドキュメント
 --------------------------
 
-[http://narazaka.github.io/shiolinkjs/](http://narazaka.github.io/shiolinkjs/)か、src/にあるコメント付きのソースをご覧ください。
+doc/か[http://narazaka.github.io/shiolinkjs/](http://narazaka.github.io/shiolinkjs/)、またはsrc/にあるコメント付きのソースをご覧ください。
 
 ドキュメントがルーズだと感じたら、ライブラリやテストコードの中身を読んでいただいたほうがわかりやすいかもしれません。
 

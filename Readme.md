@@ -23,7 +23,7 @@ Make a instance with proper engine that implemented load, request and unload met
 Document
 --------------------------
 
-See [http://narazaka.github.io/shiolinkjs/](http://narazaka.github.io/shiolinkjs/) or the source in src/.
+See doc/, [http://narazaka.github.io/shiolinkjs/](http://narazaka.github.io/shiolinkjs/) or the source in src/.
 
 Also you can found the code snippets in test/.
 
