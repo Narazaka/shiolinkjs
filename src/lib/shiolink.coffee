@@ -2,6 +2,17 @@
 
 if require?
 	ShioriJK = require 'shiorijk'
+	unless Promise?
+		try
+			Promise = require('es6-promise').Promise
+		catch
+			Promise = require('bluebird')
+else
+	if @Promise?
+		Promise = @Promise
+	else if @ES6Promise?.Promise?
+		Promise = @ES6Promise.Promise
+	ShioriJK = @ShioriJK
 
 # SHIOLINK protocol interface.
 # This parses SHIOLINK protocol and passes data to basic "SHIORI engine" and response to out.
@@ -16,26 +27,20 @@ class ShiolinkJS
 	# @property [ShioriJK.Shiori.Request.Parser] parser
 	request_parser: null
 	# @nodoc
-	shiolink_state:
-		L : 'load'
-		R : 'request'
-		U : 'unload'
-	# @nodoc
 	shiolink_load : (directory) ->
-		if @engine.load?
-			@engine.load directory
-		return
+		new Promise (resolve, reject) => resolve @engine.load directory
+		.then -> return
 	# @nodoc
 	shiolink_request : (id) ->
 		@state = 'request'
-		"*S:#{id}\r\n"
+		new Promise (resolve, reject) -> resolve "*S:#{id}\r\n"
 	# @nodoc
 	shiolink_unload : ->
-		if @engine.unload?
-			@engine.unload()
+		new Promise (resolve, reject) => resolve @engine.unload()
+		.then -> return
 	# append SHIOLINK protocol chunk
 	# @param chunk [String] SHIOLINK protocol chunk
-	# @return [String] add_lines()'s result
+	# @return [Promise] add_lines()'s result
 	add_chunk : (chunk) ->
 		lines = chunk.split /\r\n/
 		if chunk.match /\r\n$/
@@ -43,44 +48,49 @@ class ShiolinkJS
 		@add_lines lines
 	# append SHIOLINK protocol chunk lines
 	# @param lines [Array<String>] SHIOLINK protocol chunk lines separated by \r\n
-	# @return [String] add_line()'s result
+	# @return [Promise] add_line()'s result
 	add_lines : (lines) ->
-		results = []
+		promise = new Promise (resolve, reject) -> resolve []
 		for line in lines
-			result = null
-			if result = @add_line line
-				results.push result
-		results.join ''
+			promise = promise.then ((line) =>
+				(results) =>
+					@add_line line
+					.then (result) ->
+						if result?
+							results.push result
+						results
+			)(line)
+		promise.then (results) ->
+			results.join ''
 	# append SHIOLINK protocol chunk line
 	# @param line [String] SHIOLINK protocol chunk line
-	# @return [String] if request transaction is completed, response transaction string, and if not, none.
+	# @return [Promise] If request transaction is completed, Promise resolved value is response transaction string, and if not, none (undefined value). If Engine throws error, Promise resolved value will be 500 Internal Server Error string.
 	add_line : (line) ->
 		switch @state
 			when 'shiolink'
 				if result = line.match /^\*(L|S|U):(.*)$/
 					switch result[1]
-						when 'L' then @shiolink_load result[2]
-						when 'S' then @shiolink_request result[2]
-						when 'U' then @shiolink_unload result[2]
+						when 'L' then return @shiolink_load result[2]
+						when 'S' then return @shiolink_request result[2]
+						when 'U' then return @shiolink_unload result[2]
 			when 'request'
 				parser_result = @request_parser.parse_line line
 				if parser_result.state == 'end'
 					@state = 'shiolink'
-					response = @engine.request parser_result.result
-					"#{response}"
-
-# Engine class
-# @abstract implement engines as this abstract
-class Engine
-	# SHIORI(SHIOLINK) load
-	# @param dllpath [String] SHIORI DLL's path
-	load: (dllpath) ->
-	# SHIORI(SHIOLINK) request
-	# @param request [ShioriJK.Message.Request] SHIORI Request Message (can treat as string)
-	# @return [StringLike] response SHIORI Response (must be able to treat as string)
-	request: (request) ->
-	# SHIORI(SHIOLINK) unload
-	unload: ->
+					return new Promise (resolve, reject) =>
+						resolve @engine.request parser_result.result
+					.then (response) ->
+						"#{response}"
+					.catch (error) ->
+						response = new ShioriJK.Message.Response()
+						response.status_line.protocol = 'SHIORI'
+						response.status_line.version = '3.0'
+						response.status_line.code = 500
+						response.headers.set 'X-ShiolinkJS-Error', "#{error}".replace(/\r/g, '\\r').replace(/\n/g, '\\n')
+						"#{response}"
+		return new Promise (resolve, reject) -> resolve()
 
 if module? and module.exports?
 	module.exports = ShiolinkJS
+else
+	@ShiolinkJS = ShiolinkJS
