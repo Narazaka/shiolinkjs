@@ -1,1 +1,0 @@
-http://narazaka.github.io/shiolinkjs/

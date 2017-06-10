@@ -61,45 +61,30 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<h1 id="-shiolinkjs-shiolink-interface-for-javascript-https-github-com-narazaka-shiolinkjs-"><a href="https://github.com/Narazaka/shiolinkjs">ShiolinkJS - SHIOLINK interface for JavaScript</a></h1>
-				<h2 id="installation">Installation</h2>
-				<pre><code>npm <span class="hljs-keyword">install</span> shiolinkjs
-</code></pre><h2 id="what-is-shiolinkjs-">What is ShiolinkJS ?</h2>
-				<p>ShioriJK is a library for using SHIOLINK.dll for making SHIORI subsystem.</p>
-				<h2 id="synopsys">Synopsys</h2>
-				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { ShiolinkJS } <span class="hljs-keyword">from</span> <span class="hljs-string">"shiolinkjs"</span>;
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> ShioriJK <span class="hljs-keyword">from</span> <span class="hljs-string">"shiorijk"</span>;
-
-<span class="hljs-keyword">class</span> ShioriEngine {
-    load(dirpath: <span class="hljs-built_in">string</span>) { <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>; }
-
-    unload() { <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>; }
-
-    request(request: ShioriJK.Message.Request) {
-        <span class="hljs-keyword">return</span> <span class="hljs-string">"SHIORI/3.0 400 Bad Request\r\n\r\n"</span>;
-    }
-}
-
-<span class="hljs-keyword">const</span> shiolink = <span class="hljs-keyword">new</span> ShiolinkJS(<span class="hljs-keyword">new</span> ShioriEngine());
-
-process.stdin.resume();
-process.stdin.setEncoding(<span class="hljs-string">'utf8'</span>);
-process.stdin.on(<span class="hljs-string">'data'</span>, <span class="hljs-keyword">async</span> (chunk) =&gt; {
-    <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> shiolink.addChunk(chunk);
-    <span class="hljs-keyword">if</span> (response.length) process.stdout.write(response);
-});
-</code></pre>
-				<h2 id="api-document">API Document</h2>
-				<p><a href="https://narazaka.github.io/shiolinkjs/">https://narazaka.github.io/shiolinkjs/</a></p>
-				<h2 id="license">License</h2>
-				<p>This is released under <a href="https://narazaka.net/license/MIT?2017">MIT License</a>.</p>
-			</div>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class"><a href="classes/shiolinkjs.html" class="tsd-kind-icon">ShiolinkJS</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface"><a href="interfaces/engine.html" class="tsd-kind-icon">Engine</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
+					<li class="globals current ">
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
 				</ul>
