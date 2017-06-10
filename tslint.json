@@ -1,0 +1,42 @@
+{
+    "extends": [
+        "tslint:all"
+    ],
+    "rules": {
+        "member-access": [
+            false
+        ],
+        "interface-name": [
+            true,
+            "never-prefix"
+        ],
+        "curly": false,
+        "variable-name": [true, "allow-leading-underscore"],
+        "strict-boolean-expressions": [
+            false
+        ],
+        "comment-format": [
+            true,
+            "check-space"
+        ],
+        "typedef": [
+            false
+        ],
+        "no-null-keyword": false,
+        "no-magic-numbers": [
+            false
+        ],
+        "member-ordering": [
+            false
+        ],
+        "jsdoc-format": false,
+        "no-void-expression": [
+            false
+        ],
+        "triple-equals": [
+            true,
+            "allow-null-check"
+        ],
+        "no-unsafe-any": false
+    }
+}

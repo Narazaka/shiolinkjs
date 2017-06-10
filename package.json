@@ -1,34 +1,44 @@
 {
-	"name": "shiolinkjs",
-	"version": "1.0.1",
-	"description": "SHIOLINK interface for JavaScript",
-	"homepage": "http://narazaka.github.io/shiolinkjs/",
-	"main": "index.js",
-	"scripts": {
-		"test": "mocha"
-	},
-	"dependencies": {
-		"shiorijk": "^0.0.1",
-		"es6-promise": "^2.0.0"
-	},
-	"devDependencies": {
-		"coffee-script": ">= 1.8.0",
-		"mocha": ">= 1.18.2",
-		"mocha-phantomjs": ">= 3.5.1",
-		"chai": ">= 1.9.0",
-		"chai-as-promised": ">= 4.1.1",
-		"sinon": ">= 1.10.3",
-		"istanbul": ">= 0.3.2",
-		"jade": ">= 1.0.2",
-		"codo": "2.0.8"
-	},
-	"author": {
-		"name": "narazaka",
-		"url": "http://narazaka.net/"
-	},
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Narazaka/shiolinkjs.git"
-	}
+  "name": "shiolinkjs",
+  "version": "1.0.1",
+  "description": "SHIOLINK interface for JavaScript",
+  "homepage": "https://github.com/Narazaka/shiolinkjs",
+  "main": "./dist/lib/shiolink.js",
+  "types": "./dist/lib/shiolink.d.ts",
+  "files": [
+    "dist/lib"
+  ],
+  "scripts": {
+    "dist": "rimraf dist && tsc",
+    "test": "mocha",
+    "lint": "tslint -p ./tsconfig.json --type-check *.ts ./lib/**/*.ts ./test/**/*.ts",
+    "prepublish": "npm run dist && npm run test && npm run lint",
+    "docdist": "cd doc && git clean -fd && git rm -rf * && cd .. && npm run doc && cd doc && touch .nojekyll && git add . && git commit -m doc && git push",
+    "doc": "typedoc --mode file --out doc --readme Readme.md --name \"API Document\" --disableOutputCheck --excludeNotExported lib && cd doc && git status && cd .."
+  },
+  "dependencies": {
+    "shiorijk": "^0.7.1"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.41",
+    "@types/power-assert": "^1.4.29",
+    "@types/sinon": "^2.3.1",
+    "espower-typescript": "^8.0.0",
+    "mocha": "^3.4.2",
+    "power-assert": "^1.4.3",
+    "rimraf": "^2.6.1",
+    "sinon": "^2.3.2",
+    "tslint": "^5.4.3",
+    "typedoc": "^0.7.1",
+    "typescript": "^2.3.4"
+  },
+  "author": {
+    "name": "narazaka",
+    "url": "https://narazaka.net/"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Narazaka/shiolinkjs.git"
+  }
 }

@@ -1,33 +1,51 @@
-ShiolinkJS - SHIOLINK interface for JavaScript
+[ShiolinkJS - SHIOLINK interface for JavaScript](https://github.com/Narazaka/shiolinkjs)
 =============================================
 
 Installation
 --------------------------
 
-    npm install shiolinkjs
+```
+npm install shiolinkjs
+```
 
 What is ShiolinkJS ?
 --------------------------
 
 ShioriJK is a library for using SHIOLINK.dll for making SHIORI subsystem.
 
-### Usage
-
-See the SHIORI implementation [MiyoJS](https://github.com/Narazaka/miyojs.git).
-
-Overview
+Synopsys
 --------------------------
 
-Make a instance with proper engine that implemented load, request and unload methods, and call some methods with chunks of SHIOLINK messages.
+```typescript
+import { ShiolinkJS } from "shiolinkjs";
+import * as ShioriJK from "shiorijk";
 
-Document
+class ShioriEngine {
+    load(dirpath: string) { return 1; }
+
+    unload() { return 1; }
+
+    request(request: ShioriJK.Message.Request) {
+        return "SHIORI/3.0 400 Bad Request\r\n\r\n";
+    }
+}
+
+const shiolink = new ShiolinkJS(new ShioriEngine());
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+process.stdin.on('data', async (chunk) => {
+    const response = await shiolink.addChunk(chunk);
+    if (response.length) process.stdout.write(response);
+});
+```
+
+API Document
 --------------------------
 
-See doc/, [http://narazaka.github.io/shiolinkjs/](http://narazaka.github.io/shiolinkjs/) or the source in src/.
-
-Also you can found the code snippets in test/.
+[https://narazaka.github.io/shiolinkjs/](https://narazaka.github.io/shiolinkjs/)
 
 License
 --------------------------
 
-This is released under [MIT License](http://narazaka.net/license/MIT?2014).
+This is released under [MIT License](https://narazaka.net/license/MIT?2017).
