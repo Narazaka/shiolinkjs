@@ -60,7 +60,7 @@ export class ShiolinkJS {
             lines.pop();
         }
 
-        return await this.addLines(lines);
+        return this.addLines(lines);
     }
 
     /**
@@ -90,9 +90,9 @@ export class ShiolinkJS {
             if (result) {
                 // tslint:disable-next-line switch-default
                 switch (result[1]) {
-                    case "L": return await this.shiolinkLoad(result[2]);
-                    case "S": return await this.shiolinkRequest(result[2]);
-                    case "U": return await this.shiolinkUnload();
+                    case "L": return this.shiolinkLoad(result[2]);
+                    case "S": return this.shiolinkRequest(result[2]);
+                    case "U": return this.shiolinkUnload();
                 }
             }
         } else {

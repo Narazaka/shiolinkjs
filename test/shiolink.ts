@@ -1,5 +1,5 @@
 /// <reference types="mocha" />
-// tslint:disable completed-docs
+// tslint:disable completed-docs no-implicit-dependencies
 import * as assert from "power-assert";
 import * as ShioriJK from "shiorijk";
 import * as sinon from "sinon";
