@@ -1,6 +1,8 @@
 [ShiolinkJS - SHIOLINK interface for JavaScript](https://github.com/Narazaka/shiolinkjs)
 =============================================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Narazaka/shiolinkjs.svg)](https://greenkeeper.io/)
+
 Installation
 --------------------------
 
