@@ -1,3 +1,4 @@
 -R spec
 --ui bdd
---compilers ts:espower-typescript/guess
+--require espower-typescript/guess
+test/*.ts
