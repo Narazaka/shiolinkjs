@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "dist": "rimraf dist && tsc",
-    "test": "mocha",
+    "test": "nyc mocha",
     "lint": "tslint -p .",
     "prepublish": "npm run dist && npm run test && npm run lint",
     "docdist": "cd doc && git clean -fd && git rm -rf * && cd .. && npm run doc && cd doc && touch .nojekyll && git add . && git commit -m doc && git push",
@@ -25,6 +25,7 @@
     "@types/sinon": "^4.1.2",
     "espower-typescript": "^8.1.2",
     "mocha": "^4.1.0",
+    "nyc": "^11.4.1",
     "power-assert": "^1.4.4",
     "rimraf": "^2.6.2",
     "sinon": "^4.1.3",
