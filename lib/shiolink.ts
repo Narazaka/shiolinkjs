@@ -38,7 +38,7 @@ export class ShiolinkJS {
     state: "shiolink" | "request";
 
     /** request parser */
-    private requestParser: ShioriJK.Shiori.Request.Parser;
+    private readonly requestParser: ShioriJK.Shiori.Request.Parser;
 
     /**
      * @param engine SHIORI engine
@@ -110,7 +110,9 @@ export class ShiolinkJS {
                     response.status_line.code = 500;
                     response.headers.set(
                         "X-ShiolinkJS-Error",
-                        error.toString().replace(/\r/g, "\\r").replace(/\n/g, "\\n"),
+                        error.toString()
+                            .replace(/\r/g, "\\r")
+                            .replace(/\n/g, "\\n"),
                     );
 
                     return response.toString();

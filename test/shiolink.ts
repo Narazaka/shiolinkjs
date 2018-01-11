@@ -42,7 +42,11 @@ class FakeShioriEngine {
     }
 }
 
-const heredoc = (str: string) => str.replace(/^\r?\n/, "").replace(/  +/g, "").replace(/\r?\n/g, "\r\n");
+const heredoc = (str: string) =>
+    str
+    .replace(/^\r?\n/, "")
+    .replace(/  +/g, "")
+    .replace(/\r?\n/g, "\r\n");
 
 describe("shiolinkjs", () => {
     let shiolink: ShiolinkJS;
