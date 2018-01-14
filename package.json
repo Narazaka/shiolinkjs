@@ -17,7 +17,7 @@
     "doc": "typedoc --mode file --out doc --readme Readme.md --name \"API Document\" --disableOutputCheck --excludeNotExported lib && cd doc && git status && cd .."
   },
   "dependencies": {
-    "shiorijk": "^0.8.4"
+    "shiorijk": "^1.0.0"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.46",
