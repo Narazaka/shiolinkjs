@@ -2,7 +2,7 @@
     "compileOnSave": true,
     "compilerOptions": {
         "module": "commonjs",
-        "target": "es5",
+        "target": "es2015",
         "declaration": true,
         "forceConsistentCasingInFileNames": true,
         "noImplicitAny": true,
@@ -14,12 +14,7 @@
         "preserveConstEnums": true,
         "sourceMap": true,
         "strictNullChecks": true,
-        "lib": [
-            "dom",
-            "es5",
-            "es2015.promise"
-        ],
-        "rootDir": ".",
+        "sourceRoot": ".",
         "outDir": "./dist"
     },
     "include": [
