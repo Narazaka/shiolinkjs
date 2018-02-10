@@ -3,9 +3,11 @@
   "version": "3.0.0",
   "description": "SHIOLINK interface for JavaScript",
   "homepage": "https://github.com/Narazaka/shiolinkjs",
-  "main": "./dist/lib/shiolink.js",
-  "types": "./dist/lib/shiolink.d.ts",
+  "bin": "./dist/bin/shiolinkjs.js",
+  "main": "./dist/lib/index.js",
+  "types": "./dist/lib/index.d.ts",
   "files": [
+    "dist/bin",
     "dist/lib"
   ],
   "scripts": {

@@ -37,6 +37,7 @@
             true,
             "allow-null-check"
         ],
-        "no-unsafe-any": false
+        "no-unsafe-any": false,
+        "only-arrow-functions": false
     }
 }

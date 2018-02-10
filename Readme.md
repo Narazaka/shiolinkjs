@@ -30,7 +30,6 @@ Synopsys
 --------------------------
 
 ```typescript
-import { ShiolinkJS } from "shiolinkjs";
 import * as ShioriJK from "shiorijk";
 
 class ShioriEngine {
@@ -43,14 +42,11 @@ class ShioriEngine {
     }
 }
 
-const shiolink = new ShiolinkJS(new ShioriEngine());
+export default new ShioriEngine();
+```
 
-process.stdin.resume();
-process.stdin.setEncoding('utf8');
-process.stdin.on('data', async (chunk) => {
-    const response = await shiolink.addChunk(chunk);
-    if (response.length) process.stdout.write(response);
-});
+```bash
+shiolinkjs ./shioriEngine.js
 ```
 
 API Document
