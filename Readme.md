@@ -33,13 +33,13 @@ Synopsys
 import * as ShioriJK from "shiorijk";
 
 class ShioriEngine {
-    load(dirpath: string) { return 1; }
-
-    unload() { return 1; }
+    load(dirpath: string) { }
 
     request(request: ShioriJK.Message.Request) {
         return "SHIORI/3.0 400 Bad Request\r\n\r\n";
     }
+
+    unload() { process.exit(); }
 }
 
 export default new ShioriEngine();
