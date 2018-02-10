@@ -79,8 +79,7 @@
 </code></pre><h2 id="what-is-shiolinkjs-">What is ShiolinkJS ?</h2>
 				<p>ShioriJK is a library for using SHIOLINK.dll for making SHIORI subsystem.</p>
 				<h2 id="synopsys">Synopsys</h2>
-				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { ShiolinkJS } <span class="hljs-keyword">from</span> <span class="hljs-string">"shiolinkjs"</span>;
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> ShioriJK <span class="hljs-keyword">from</span> <span class="hljs-string">"shiorijk"</span>;
+				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> ShioriJK <span class="hljs-keyword">from</span> <span class="hljs-string">"shiorijk"</span>;
 
 <span class="hljs-keyword">class</span> ShioriEngine {
     load(dirpath: <span class="hljs-built_in">string</span>) { <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>; }
@@ -92,14 +91,9 @@
     }
 }
 
-<span class="hljs-keyword">const</span> shiolink = <span class="hljs-keyword">new</span> ShiolinkJS(<span class="hljs-keyword">new</span> ShioriEngine());
-
-process.stdin.resume();
-process.stdin.setEncoding(<span class="hljs-string">'utf8'</span>);
-process.stdin.on(<span class="hljs-string">'data'</span>, <span class="hljs-keyword">async</span> (chunk) =&gt; {
-    <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> shiolink.addChunk(chunk);
-    <span class="hljs-keyword">if</span> (response.length) process.stdout.write(response);
-});
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> ShioriEngine();
+</code></pre>
+				<pre><code class="lang-bash">shiolinkjs ./shioriEngine.js
 </code></pre>
 				<h2 id="api-document">API Document</h2>
 				<p><a href="https://narazaka.github.io/shiolinkjs/">https://narazaka.github.io/shiolinkjs/</a></p>
@@ -122,6 +116,12 @@ process.stdin.on(<span class="hljs-string">'data'</span>, <span class="hljs-keyw
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/engine.html" class="tsd-kind-icon">Engine</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#runshiolink" class="tsd-kind-icon">run<wbr>Shiolink</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#runshiori" class="tsd-kind-icon">run<wbr>Shiori</a>
 					</li>
 				</ul>
 			</nav>
