@@ -33,7 +33,7 @@
     "shx": "^0.3.0",
     "sinon": "^6.0.0",
     "tslint": "^5.9.1",
-    "typedoc": "^0.12.0",
+    "typedoc": "^0.13.0",
     "typescript": "^2.7.2"
   },
   "author": {
