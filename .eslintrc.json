@@ -1,0 +1,19 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint",
+        "prettier"
+    ],
+    "env": {
+        "node": true
+    },
+    "extends": [
+        "airbnb-typescript/base",
+        "plugin:prettier/recommended",
+        "prettier/@typescript-eslint"
+    ],
+    "rules": {
+        "import/prefer-default-export": "off",
+        "no-restricted-syntax": "off"
+    }
+}

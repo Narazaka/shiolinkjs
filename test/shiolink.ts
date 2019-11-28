@@ -1,4 +1,4 @@
-/// <reference types="mocha" />
+// / <reference types="mocha" />
 // tslint:disable completed-docs no-implicit-dependencies
 import * as assert from "power-assert";
 import * as ShioriJK from "shiorijk";
@@ -6,13 +6,17 @@ import * as sinon from "sinon";
 import { ShiolinkJS } from "../lib/shiolink";
 
 class FakeShioriEngine {
-    // tslint:disable-next-line prefer-function-over-method
-    load(_: string) { return 1; }
+    // eslint-disable-next-line class-methods-use-this, @typescript-eslint/no-unused-vars
+    load(_: string) {
+        return 1;
+    }
 
-    // tslint:disable-next-line prefer-function-over-method
-    unload() { return 1; }
+    // eslint-disable-next-line class-methods-use-this
+    unload() {
+        return 1;
+    }
 
-    // tslint:disable-next-line prefer-function-over-method
+    // eslint-disable-next-line class-methods-use-this
     request(request: ShioriJK.Message.Request) {
         if (request.request_line.version === "3.0") {
             if (request.headers.get("ID") === "version") {
@@ -23,15 +27,7 @@ class FakeShioriEngine {
                 response.headers.set("Value", "0.1");
 
                 return response;
-            } else {
-                const response = new ShioriJK.Message.Response();
-                response.status_line.version = "3.0";
-                response.status_line.code = 400;
-                response.headers.set("Charset", "UTF-8");
-
-                return response;
             }
-        } else {
             const response = new ShioriJK.Message.Response();
             response.status_line.version = "3.0";
             response.status_line.code = 400;
@@ -39,14 +35,20 @@ class FakeShioriEngine {
 
             return response;
         }
+        const response = new ShioriJK.Message.Response();
+        response.status_line.version = "3.0";
+        response.status_line.code = 400;
+        response.headers.set("Charset", "UTF-8");
+
+        return response;
     }
 }
 
 const heredoc = (str: string) =>
     str
-    .replace(/^\r?\n/, "")
-    .replace(/  +/g, "")
-    .replace(/\r?\n/g, "\r\n");
+        .replace(/^\r?\n/, "")
+        .replace(/  +/g, "")
+        .replace(/\r?\n/g, "\r\n");
 
 describe("shiolinkjs", () => {
     let shiolink: ShiolinkJS;
@@ -64,17 +66,20 @@ describe("shiolinkjs", () => {
     });
 
     it("can parse shiolink load/unload", async () => {
-        await shiolink.addChunk(heredoc(`
+        await shiolink.addChunk(
+            heredoc(`
             *L:C:\\ukagaka
             *U:
-        `));
+        `),
+        );
         assert(spyLoad.callCount === 1);
         assert(spyUnload.callCount === 1);
         assert(spyLoad.calledWith("C:\\ukagaka"));
     });
 
     it("can parse shiolink", async () => {
-        const result = await shiolink.addChunk(heredoc(`
+        const result = await shiolink.addChunk(
+            heredoc(`
             *L:C:\\ukagaka
             *S:qawsedrftgyhujikolp
             GET Version SHIORI/2.6
@@ -88,8 +93,11 @@ describe("shiolinkjs", () => {
             Sender: SSP
 
             *U:
-        `));
-        assert(result === heredoc(`
+        `),
+        );
+        assert(
+            result ===
+                heredoc(`
             *S:qawsedrftgyhujikolp
             SHIORI/3.0 400 Bad Request
             Charset: UTF-8
@@ -99,7 +107,8 @@ describe("shiolinkjs", () => {
             Charset: UTF-8
             Value: 0.1
 
-        `));
+        `),
+        );
         assert(spyLoad.callCount === 1);
         assert(spyUnload.callCount === 1);
         assert(spyLoad.calledWith("C:\\ukagaka"));

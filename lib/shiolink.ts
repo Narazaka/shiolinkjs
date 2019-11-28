@@ -16,8 +16,9 @@ export interface Engine {
      * @param request SHIORI Request Message (can treat as string)
      * @return SHIORI Response (return value or Promise resolved value must be able to treat as string)
      */
-    request(request: ShioriJK.Message.Request):
-        string | ShioriJK.Message.Response | Promise<string> | Promise<ShioriJK.Message.Response>;
+    request(
+        request: ShioriJK.Message.Request,
+    ): string | ShioriJK.Message.Response | Promise<string> | Promise<ShioriJK.Message.Response>;
 
     /**
      * SHIORI(SHIOLINK) unload
@@ -71,6 +72,7 @@ export class ShiolinkJS {
     async addLines(lines: string[]) {
         const results = [];
         for (const line of lines) {
+            // eslint-disable-next-line no-await-in-loop
             const result = await this.addLine(line);
             if (result) results.push(result);
         }
@@ -82,17 +84,21 @@ export class ShiolinkJS {
      * append SHIOLINK protocol chunk line
      * @param line [String] SHIOLINK protocol chunk line
      * @return If request transaction is completed, response transaction string, and if not, undefined.
-	 *         If Engine throws error, Promise resolved value will be 500 Internal Server Error string.
+     *         If Engine throws error, Promise resolved value will be 500 Internal Server Error string.
      */
+    // eslint-disable-next-line consistent-return
     async addLine(line: string) {
         if (this.state === "shiolink") {
             const result = line.match(/^\*(L|S|U):(.*)$/);
             if (result) {
-                // tslint:disable-next-line switch-default
+                // eslint-disable-next-line default-case
                 switch (result[1]) {
-                    case "L": return this.shiolinkLoad(result[2]);
-                    case "S": return this.shiolinkRequest(result[2]);
-                    case "U": return this.shiolinkUnload();
+                    case "L":
+                        return this.shiolinkLoad(result[2]);
+                    case "S":
+                        return this.shiolinkRequest(result[2]);
+                    case "U":
+                        return this.shiolinkUnload();
                 }
             }
         } else {
@@ -110,7 +116,8 @@ export class ShiolinkJS {
                     response.status_line.code = 500;
                     response.headers.set(
                         "X-ShiolinkJS-Error",
-                        error.toString()
+                        error
+                            .toString()
                             .replace(/\r/g, "\\r")
                             .replace(/\n/g, "\\n"),
                     );
