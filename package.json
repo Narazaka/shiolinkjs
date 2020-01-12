@@ -41,7 +41,7 @@
     "prettier": "^1.19.1",
     "shx": "^0.3.0",
     "sinon": "^7.0.0",
-    "typedoc": "^0.15.3",
+    "typedoc": "^0.16.0",
     "typescript": "^3.7.2"
   },
   "author": {
