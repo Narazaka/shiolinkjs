@@ -14,6 +14,8 @@
     ],
     "rules": {
         "import/prefer-default-export": "off",
-        "no-restricted-syntax": "off"
+        "no-restricted-syntax": "off",
+        "@typescript-eslint/no-implied-eval": "off",
+        "@typescript-eslint/no-throw-literal": "off"
     }
 }
